@@ -53,5 +53,25 @@ namespace SportsStoreApp.Controllers
             var products = await _productRepository.AddProductAsync(product);
             return Ok(products);
         }
+        [HttpPut, Route("")]//https://localhost:5000/api/product/id/22
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Product))]
+        [ProducesResponseType(StatusCodes.Status406NotAcceptable, Type = typeof(Product))]
+        public async Task<IActionResult> Put([FromBody] Product product)
+        {
+            var prod = await _productRepository.UpdateProductAsync(product);
+            return Ok(prod);
+        }
+        [HttpPut, Route("{id}")]//https://localhost:5000/api/product/id/22
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(Product))]
+        public async Task<IActionResult> Delete(int  id)
+        {
+            bool flag = await _productRepository.DeleteProductAsync(id);
+            if(flag)
+            {
+                return RedirectToAction("Get");
+            }
+            return NotFound();
+        }
     }
 }

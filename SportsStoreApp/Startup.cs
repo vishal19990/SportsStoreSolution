@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +28,7 @@ namespace SportsStoreApp
         }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
             services.AddDbContext<SportsStoreDbcontext>(cfg=> {
                 cfg.UseSqlServer(Configuration["ConnectionStrings:SportsStoreConnection"],sqlServerOptionsAction:sqlOptions=>
                 {
@@ -58,13 +60,17 @@ namespace SportsStoreApp
                 }
             }
             app.UseRouting();
+            app.UseEndpoints(ConfigureRoutes);
+           
+            
+        }
 
-            app.UseEndpoints(endpoints =>
+        private void ConfigureRoutes(IEndpointRouteBuilder routeBuilder)
+        {
+            routeBuilder.MapControllers();
+            routeBuilder.MapGet("/", async context =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("<h1>Sporrt  store site under construction !</h1>");
-                });
+                await context.Response.WriteAsync("<h1>Sporrt  store site under construction !</h1>");
             });
         }
     }
