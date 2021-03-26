@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using SportsStoreApp.Models;
+using SportsStoreApp.Models.Abstract;
+using SportsStoreApp.Models.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +34,10 @@ namespace SportsStoreApp
                 });
                 cfg.UseLoggerFactory(LoggerFactory.Create(cfg => { cfg.AddConsole(); })).EnableSensitiveDataLogging();
             });
+            services.AddScoped<IProductRepository, EFProductRepository>();
+            services.AddScoped<IOrderRepository, EFOrderRepository>();
+            services.AddScoped<IOrderDetailRepository, EFOrderDetailRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
