@@ -48,7 +48,7 @@ namespace SportsStoreApp
                 if(createDatabase)
                 {
                     SportsStoreSeedData.PopulateSportsStore(context);
-                    logger.LogInformation($"Sportsseeddata calle{context.Products.Count()} --Products addded\n {context.Orders.Count()}--order is added\n{context.orderDetails.Count()}--odertail added");
+                    logger.LogInformation($"Sportsseeddata called{context.Products.Count()} --Products addded\n {context.Orders.Count()}--order is added\n{context.orderDetails.Count()}--odertail added");
                 }
             }
             app.UseRouting();
