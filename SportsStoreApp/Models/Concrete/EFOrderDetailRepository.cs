@@ -35,8 +35,8 @@ namespace SportsStoreApp.Models.Concrete
         
         public async Task<bool> RemoveOrderDetailAsync(int orderId)
         {
-            var order = await _context.orderDetails.FindAsync(orderId);
-            _context.orderDetails.Remove(order);
+            var orderdetail = await _context.orderDetails.FindAsync(orderId);
+            _context.orderDetails.Remove(orderdetail);
             return await _context.SaveChangesAsync() > 0;
         }
 
