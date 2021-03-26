@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SportsStoreApp.Models.Entities
 {
-    public class OrderDetails
+    public class OrderDetail
     {
         [Key]
         [Column(Order = 1)]

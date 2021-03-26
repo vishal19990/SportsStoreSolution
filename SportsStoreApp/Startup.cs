@@ -1,8 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using SportsStoreApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,28 +15,49 @@ using System.Threading.Tasks;
 namespace SportsStoreApp
 {
     public class Startup
+
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<SportsStoreDbcontext>(cfg=> {
+                cfg.UseSqlServer(Configuration["ConnectionStrings:SportsStoreConnection"],sqlServerOptionsAction:sqlOptions=>
+                {
+                    sqlOptions.EnableRetryOnFailure(maxRetryCount: 10, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
+                });
+                cfg.UseLoggerFactory(LoggerFactory.Create(cfg => { cfg.AddConsole(); })).EnableSensitiveDataLogging();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,ILogger<Startup> logger)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            using (var scope=app.ApplicationServices.CreateScope())
+            {
+                SportsStoreDbcontext context= scope.ServiceProvider.GetRequiredService<SportsStoreDbcontext>();
+                var createDatabase = context.Database.EnsureCreated();
+                if(createDatabase)
+                {
+                    SportsStoreSeedData.PopulateSportsStore(context);
+                    logger.LogInformation($"Sportsseeddata calle{context.Products.Count()} --Products addded\n {context.Orders.Count()}--order is added\n{context.orderDetails.Count()}--odertail added");
+                }
+            }
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync("Hello World!");
+                    await context.Response.WriteAsync("<h1>Sporrt  store site under construction !</h1>");
                 });
             });
         }

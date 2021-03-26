@@ -13,3 +13,11 @@ Using dotnet
 -dotnet add package Microsoft.EntityFrameworkCore -Version 5.0.3
 -dotnet add package Microsoft.EntityFrameworkCore.SqlServer -Version 5.0.3
 -dotnet add package Microsoft.EntityFrameworkCore.Design -Version 5.0.3
+
+
+
+- dotnet ef database update
+- (will ctreate the databse if it doesnot exists)
+dotnet ef migrations add InitialDb -o Models\Migrations
+(will create class for the database with tales and the constraints)
+-dotnet ef migrations remove (will remove the migrations) 
