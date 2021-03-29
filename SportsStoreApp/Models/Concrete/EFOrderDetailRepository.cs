@@ -27,7 +27,7 @@ namespace SportsStoreApp.Models.Concrete
             }
             return null;
         }
-        public async Task<IEnumerable<OrderDetail>> GetOrderDetailAsync(int orderId) => await _context.orderDetails.Where(o => o.OrderId == orderId).ToListAsync();
+        public async Task<IEnumerable<OrderDetail>> GetOrderDetailByIdAsync(int orderId) => await _context.orderDetails.Where(o => o.OrderId == orderId).ToListAsync();
 
 
         public async Task<IEnumerable<OrderDetail>> GetOrderDetailsAsync()=>await _context.orderDetails.ToListAsync();

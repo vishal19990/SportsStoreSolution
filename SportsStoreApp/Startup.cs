@@ -39,7 +39,9 @@ namespace SportsStoreApp
             services.AddScoped<IProductRepository, EFProductRepository>();
             services.AddScoped<IOrderRepository, EFOrderRepository>();
             services.AddScoped<IOrderDetailRepository, EFOrderDetailRepository>();
-
+            services.AddSwaggerGen(cfg => {
+                cfg.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "SportsStore", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +51,11 @@ namespace SportsStoreApp
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseSwagger();
+            app.UseSwaggerUI(cfg => {
+                cfg.SwaggerEndpoint("/swagger/v1/swagger.json", "SportsStore v1");
+            });
+
             using (var scope=app.ApplicationServices.CreateScope())
             {
                 SportsStoreDbcontext context= scope.ServiceProvider.GetRequiredService<SportsStoreDbcontext>();

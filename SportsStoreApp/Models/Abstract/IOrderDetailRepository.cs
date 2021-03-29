@@ -10,7 +10,7 @@ namespace SportsStoreApp.Models.Abstract
     {
         Task<IEnumerable<OrderDetail>> GetOrderDetailsAsync();
 
-        Task<IEnumerable<OrderDetail>> GetOrderDetailAsync(int orderId);
+        Task<IEnumerable<OrderDetail>> GetOrderDetailByIdAsync(int orderId);
         Task<bool> RemoveOrderDetailAsync(int orderId);
         Task<OrderDetail> AddOrderDetailAsync(OrderDetail orderDetail);
         Task<OrderDetail> UpdateOrderDetailAsync(OrderDetail orderDetail);
