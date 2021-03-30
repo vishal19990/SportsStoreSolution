@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,6 +43,10 @@ namespace SportsStoreApp
             services.AddSwaggerGen(cfg => {
                 cfg.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "SportsStore", Version = "v1" });
             });
+            services.AddSpaStaticFiles(cfg =>
+
+            cfg.RootPath = "ClientApp/dist"
+            ) ;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +56,8 @@ namespace SportsStoreApp
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseStaticFiles();
+            app.UseSpaStaticFiles();
             app.UseSwagger();
             app.UseSwaggerUI(cfg => {
                 cfg.SwaggerEndpoint("/swagger/v1/swagger.json", "SportsStore v1");
@@ -68,7 +75,17 @@ namespace SportsStoreApp
             }
             app.UseRouting();
             app.UseEndpoints(ConfigureRoutes);
-           
+
+            app.UseSpa(cfg => {
+                cfg.Options.SourcePath = "ClientApp";
+                if(env.IsDevelopment())
+                {
+                    cfg.UseAngularCliServer(npmScript: "start");
+                }
+            }
+          
+            
+            );
             
         }
 
