@@ -21,3 +21,8 @@ Using dotnet
 dotnet ef migrations add InitialDb -o Models\Migrations
 (will create class for the database with tales and the constraints)
 -dotnet ef migrations remove (will remove the migrations) 
+
+
+#### Git branches For Angular
+
+01 SportStoreApI
