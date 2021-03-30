@@ -4,7 +4,7 @@ import {NavHeaderComponent} from './navheader.componet'
 import {NavFooterComponent}  from './navfooter.componet'
 @NgModule(
   {
-    import:[],
+    imports:[],
     declarations:[NavHeaderComponent,NavFooterComponent],
     exports:[NavHeaderComponent,NavFooterComponent]
   }
