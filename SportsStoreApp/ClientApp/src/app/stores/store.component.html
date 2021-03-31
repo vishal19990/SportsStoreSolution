@@ -21,6 +21,17 @@
 
   </div>
   
-  </div>
+    </div>
+   <div class="float-start m-1">
+    <select class="form-control" [value]="productsPerPage" (change)="changePageSize($event.target.value)"> 
+      <option value="3">3 Per Page </option>
+      <option value="4">4 Per Page </option>
+      <option value="6">6 Per Page </option>
+      <option value="8">8 Per Page </option>
+    </select>
+   </div>
+<div class="btn-group float-end m-1">
+<button class="btn btn-outline-primary" *ngFor="let page of PageNumbers" [class.active]="page==selectPage" (click)="changePage">{{page}}</button>
+</div>
   </div>
   </div>

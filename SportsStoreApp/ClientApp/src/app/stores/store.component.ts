@@ -8,11 +8,15 @@ import {Product} from '../models/product.model'
   })
   export class StoreComponent{
     public selectedCategory:string=null!
+    public productsPerPage:number=4;
+    public selectPage:number=1;
+
     constructor(private productRepository:ProductRepository){}
 
 
     get products():Product[]{
-      return this.productRepository.getProducts(this.selectedCategory);
+      const pageIndex=((this.selectPage-1)*this.productsPerPage);
+      return this.productRepository.getProducts(this.selectedCategory).splice(pageIndex,this.productsPerPage);
     }
 
     get categories():string[]{
@@ -24,5 +28,21 @@ import {Product} from '../models/product.model'
 
     addProductToCart(product:Product){
       console.log(`selected Product will be added to the cart :${product}\n${JSON.stringify(product)}`)
+    }
+
+    changePage(newPage:number){
+      this.selectPage=newPage;
+    }
+
+    changePageSize(newSize:number)
+    {
+      this.productsPerPage=newSize;
+      this.changePage(1);
+    }
+
+    get PageNumbers():number[]{
+      const result=Array(Math.ceil(this.productRepository.getProducts(this.selectedCategory).length/this.productsPerPage)).fill(0).map((x,i)=>i+1);
+      console.log(`Pagenumber${result}`)
+      return result;
     }
   }
