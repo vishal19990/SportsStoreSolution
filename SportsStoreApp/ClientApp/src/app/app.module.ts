@@ -7,7 +7,10 @@ import { AppComponent } from './app.component';
 // import {NavFooterComponent} from './nav/navfooter.componet'
 // import  {StoreComponent} from './stores/store.component'
 import {NavModule} from './nav/nav.module';
-import {StoresModule} from './stores/stores.module'
+import {StoresModule} from './stores/stores.module';
+import {RouterModule} from '@angular/router'
+import { StoreComponent } from './stores/store.component';
+import { CartDetailComponet } from './stores/cartDetails.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,7 +18,12 @@ import {StoresModule} from './stores/stores.module'
     //NavFooterComponent,NavHeaderComponent
   ],
   imports: [
-    BrowserModule,NavModule,StoresModule
+    BrowserModule,NavModule,StoresModule,
+    RouterModule.forRoot([
+    {path: 'store', component:StoreComponent},
+    {path: 'cart', component: CartDetailComponet},
+    {path: '**', redirectTo: '/store'}
+  ])
   ],
   providers: [],
   bootstrap: [AppComponent]

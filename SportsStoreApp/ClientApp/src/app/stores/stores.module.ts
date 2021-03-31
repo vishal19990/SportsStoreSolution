@@ -5,9 +5,11 @@ import {ModelModule} from '../models/models.module';
 import {CounterDirective} from './counter.directive';
 
 import {FormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
+import {CartDetailComponet} from './cartDetails.component'
 @NgModule({
-  imports:[ModelModule,BrowserModule,FormsModule],
-  declarations:[StoreComponent,CounterDirective],
-  exports:[StoreComponent]
+  imports:[ModelModule,BrowserModule,FormsModule,RouterModule],
+  declarations:[StoreComponent,CounterDirective,CartDetailComponet],
+  exports:[StoreComponent,CartDetailComponet]
 })
 export class StoresModule{}
