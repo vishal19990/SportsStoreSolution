@@ -39,6 +39,11 @@ import {Product} from '../models/product.model'
       this.productsPerPage=newSize;
       this.changePage(1);
     }
+    get pageCount():number{
+      const result=Math.ceil(this.productRepository.getProducts(this.selectedCategory).length/this.productsPerPage);
+      console.warn(`pageCount->${result}`)
+      return result;
+    }
 
     get PageNumbers():number[]{
       const result=Array(Math.ceil(this.productRepository.getProducts(this.selectedCategory).length/this.productsPerPage)).fill(0).map((x,i)=>i+1);
