@@ -19,7 +19,7 @@ export class ProductRepository{
     )
   }
   getProducts(category:string|null=null):Product[]{
-    return this.products.filter(c=>category==null||category===category);
+    return this.products.filter(c=>category==null||c.category===category);
   }
   getProduct=(id:number)=>this.products.find(p=>p.productId==id)as Product;
   getCategories=()=>this.categories;
