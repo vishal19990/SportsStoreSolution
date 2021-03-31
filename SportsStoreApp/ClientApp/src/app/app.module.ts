@@ -5,14 +5,17 @@ import { AppComponent } from './app.component';
 // both these module added to single file
 // import {NavHeaderComponent} from './nav/navheader.componet'
 // import {NavFooterComponent} from './nav/navfooter.componet'
+// import  {StoreComponent} from './stores/store.component'
 import {NavModule} from './nav/nav.module';
+import {StoresModule} from './stores/stores.module'
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    // StoreComponent
     //NavFooterComponent,NavHeaderComponent
   ],
   imports: [
-    BrowserModule,NavModule
+    BrowserModule,NavModule,StoresModule
   ],
   providers: [],
   bootstrap: [AppComponent]
