@@ -9,13 +9,13 @@ import {Product} from '../models/product.model'
   export class StoreComponent{
     public selectedCategory:string=null!
     public productsPerPage:number=4;
-    public selectPage:number=1;
+    public selectedPage:number=1;
 
     constructor(private productRepository:ProductRepository){}
 
 
     get products():Product[]{
-      const pageIndex=((this.selectPage-1)*this.productsPerPage);
+      const pageIndex=((this.selectedPage-1)*this.productsPerPage);
       return this.productRepository.getProducts(this.selectedCategory).splice(pageIndex,this.productsPerPage);
     }
 
@@ -31,7 +31,7 @@ import {Product} from '../models/product.model'
     }
 
     changePage(newPage:number){
-      this.selectPage=newPage;
+      this.selectedPage=newPage;
     }
 
     changePageSize(newSize:number)
