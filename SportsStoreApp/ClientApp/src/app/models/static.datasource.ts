@@ -1,6 +1,6 @@
-import {Injectable, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Product} from './product.model'
-import {observable,from} from 'rxjs'
+import {observable,from, Observable} from 'rxjs'
 @Injectable()
 
 export class StaticDatasource{
