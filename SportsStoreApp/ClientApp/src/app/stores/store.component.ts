@@ -1,6 +1,7 @@
 import {Component} from '@angular/core'
 import {ProductRepository} from '../models/product.repository'
 import {Product} from '../models/product.model'
+import { Cart } from '../models/cart.model';
 @Component(
   {
     selector:'app-store',
@@ -11,7 +12,7 @@ import {Product} from '../models/product.model'
     public productsPerPage:number=4;
     public selectedPage:number=1;
 
-    constructor(private productRepository:ProductRepository){}
+    constructor(private productRepository:ProductRepository,private cart:Cart){}
 
 
     get products():Product[]{
@@ -27,7 +28,8 @@ import {Product} from '../models/product.model'
     }
 
     addProductToCart(product:Product){
-      console.log(`selected Product will be added to the cart :${product}\n${JSON.stringify(product)}`)
+      // console.log(`selected Product will be added to the cart :${product}\n${JSON.stringify(product)}`)
+      this.cart.addLine(product);
     }
 
     changePage(newPage:number){
@@ -41,13 +43,13 @@ import {Product} from '../models/product.model'
     }
     get pageCount():number{
       const result=Math.ceil(this.productRepository.getProducts(this.selectedCategory).length/this.productsPerPage);
-      console.warn(`pageCount->${result}`)
+      // console.warn(`pageCount->${result}`)
       return result;
     }
 
     get PageNumbers():number[]{
       const result=Array(Math.ceil(this.productRepository.getProducts(this.selectedCategory).length/this.productsPerPage)).fill(0).map((x,i)=>i+1);
-      console.log(`Pagenumber${result}`)
+      // console.log(`Pagenumber${result}`)
       return result;
     }
   }

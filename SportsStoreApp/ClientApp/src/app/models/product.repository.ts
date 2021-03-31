@@ -14,8 +14,8 @@ export class ProductRepository{
         this.categories=data.map(p=>p.category).filter((c,index,array)=>array.indexOf(c)===index).sort() as string[]
       
       },
-      (err)=>{console.log(`Error from datasource.getProduct.subscribe()-->\n${err}`)},
-      ()=>{console.log(`Datasource.getproduct().subscribe-->work completed`);}
+      (err)=>{console.log(`Error from datasource.getProduct.subscribe()-->\n${err}`)}
+      // ,()=>{console.log(`Datasource.getproduct().subscribe-->work completed`);}
     )
   }
   getProducts(category:string|null=null):Product[]{
