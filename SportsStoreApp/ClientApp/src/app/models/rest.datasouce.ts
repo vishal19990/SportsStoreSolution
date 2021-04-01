@@ -31,10 +31,23 @@ return this.http.put<Product>(`${this.baseUrl}/product`, product);
 deleteProduct(id: number): Observable<Product> {
 return this.http.delete<Product>(`${this.baseUrl}/product/${id}`);
 }
+
+getOrders():Observable<Order[]>{ return this.http.get<Order[]>('$(this.baseUrl}/order');}
 saveOrder(order: Order): Observable<Order> {
-console.log(
-`From RestDataSource (Full data with Cart) :\n${JSON.stringify(order)}`
-);
-return from([order]);
-}
+  console.log(
+  `From RestDataSource (Full data with Cart) :\n${JSON.stringify(order)}`
+  );
+  return from([order]);
+  // return this.http.post<Order>(
+  // `${this.baseUrl}/order`,order);
+  }
+  deleteOrder(id: number): Observable<Order> {
+  return this.http.delete<Order>(`${this.baseUrl}/order/${id}`);
+  }
+  updateOrder(order: Order): Observable<Order> {
+  return this.http.put<Order>(
+  `${this.baseUrl}/order/${order.orderId}`,
+  order
+  );
+  }
 }
