@@ -4,7 +4,7 @@ import {Order} from './order.model'
 import {StaticDatasource} from './static.datasource';
 @Injectable()
 export class OrderRepository{
-  private orders:Order:[];
+  private orders:Order[]=[];
   constructor(private dataSource:StaticDatasource)
   {}
   saveOrder(order:Order):Observable<Order>{

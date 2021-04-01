@@ -6,7 +6,5 @@ import { Cart } from '../models/cart.model';
   templateUrl: './cartDetails.componet.html'
 })
 export class CartDetailComponet {
-  constructor(public cart: Cart ){
-
-  }
+  constructor(public cart: Cart ){}
 }

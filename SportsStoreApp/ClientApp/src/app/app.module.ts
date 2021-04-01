@@ -11,6 +11,7 @@ import {StoresModule} from './stores/stores.module';
 import {RouterModule} from '@angular/router'
 import { StoreComponent } from './stores/store.component';
 import { CartDetailComponet } from './stores/cartDetails.component';
+import {  CheckoutComponent} from "./stores/checkout.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +23,7 @@ import { CartDetailComponet } from './stores/cartDetails.component';
     RouterModule.forRoot([
     {path: 'store', component:StoreComponent},
     {path: 'cart', component: CartDetailComponet},
+    {path: 'checkout', component:CheckoutComponent },
     {path: '**', redirectTo: '/store'}
   ])
   ],
