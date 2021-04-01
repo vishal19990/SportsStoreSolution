@@ -12,6 +12,7 @@ import {RouterModule} from '@angular/router'
 import { StoreComponent } from './stores/store.component';
 import { CartDetailComponet } from './stores/cartDetails.component';
 import {  CheckoutComponent} from "./stores/checkout.component";
+import {StoreFirstGuard }from "./storeFirst.guard"
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,13 +22,13 @@ import {  CheckoutComponent} from "./stores/checkout.component";
   imports: [
     BrowserModule,NavModule,StoresModule,
     RouterModule.forRoot([
-    {path: 'store', component:StoreComponent},
-    {path: 'cart', component: CartDetailComponet},
-    {path: 'checkout', component:CheckoutComponent },
+    {path: 'store', component:StoreComponent,canActivate:[StoreFirstGuard]},
+    {path: 'cart', component: CartDetailComponet,canActivate:[StoreFirstGuard]},
+    {path: 'checkout', component:CheckoutComponent,canActivate:[StoreFirstGuard]},
     {path: '**', redirectTo: '/store'}
   ])
   ],
-  providers: [],
+  providers: [StoreFirstGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
