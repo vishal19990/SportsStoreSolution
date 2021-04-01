@@ -76,6 +76,13 @@ namespace SportsStoreApp
                     logger.LogInformation($"Sportsseeddata called{context.Products.Count()} --Products addded\n {context.Orders.Count()}--order is added\n{context.orderDetails.Count()}--odertail added");
                 }
             }
+            app.UseCors(cfg =>
+            {
+                cfg.WithOrigins("https://localhost:4200/")
+                .AllowAnyHeader()
+                .AllowAnyOrigin()
+                .AllowAnyMethod();
+            });
             app.UseRouting();
             app.UseEndpoints(ConfigureRoutes);
 
