@@ -33,8 +33,15 @@ return this.products.filter(
 (c) => category == null || c.category === category
 );
 }
-getProduct = (id: number) =>
-this.products.find((p) => p.productId === id) as Product;
+getProduct(id: number) {
+  console.log(`id${id}`);
+  let prod=this.products.find(p => p.productId == id) as Product;
+  console.log(`Products: ${JSON.stringify(this.products)}`)
+  console.log(`Prduct${prod}`);
+  return prod;
+}
+
+
 getCategories = () => this.categories;
 
 saveProduct(product: Product) {

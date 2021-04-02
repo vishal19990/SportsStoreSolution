@@ -28,6 +28,7 @@ export class CheckoutComponent{
   }
   submitOrder(form: NgForm)
   {
+    debugger;
     this.submitted = true;
     if (form.valid)
     {

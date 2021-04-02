@@ -12,8 +12,8 @@ import { FormsModule } from '@angular/forms';
 const adminRouting=RouterModule.forChild([
   {
     path:'main',component:AdminComponent,children:[
-      {path:'products/mode/:id',component:ProductEditorComponent},
-      {path:'products/mode',component:ProductEditorComponent},
+      {path:'products/:mode/:id',component:ProductEditorComponent},
+      {path:'products/:mode',component:ProductEditorComponent},
       {path:'products',component:ProductTableComponent},
       {path:'orders',component:OrderTableComponent},
     ]

@@ -6,7 +6,7 @@ import {RestDataSource} from './rest.datasouce'
 
 @Injectable()
 export class OrderRepository{
-  private orders:Order[]=[];
+  private orders:Order[] = [];
   private loaded:boolean=false;
   constructor(private dataSource:RestDataSource)
   {}
@@ -31,7 +31,7 @@ getOrders():Order[]{
   updateOrder(order:Order)
   {
     this.dataSource.updateOrder(order).subscribe(
-      (od)=>{this.orders.splice(this.orders.findIndex(o=>o.orderId===order.orderId),1,order);},
+      (od)=>{this.orders.splice(this.orders.findIndex(o=>o.orderId==order.orderId),1,order);},
       (err)=>{console.log(`OrderRepository.updateOrder:error\n${err}`);}
     )
   }
