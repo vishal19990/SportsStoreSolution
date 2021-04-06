@@ -14,6 +14,9 @@ export class OrderDetailRepository{
       console.log('orderDetailRepository.getOrderDetails:error\n${err}');});
       return this.orderDetails;
   }
-
+  SaveOrdetails(orderdetail:OrderDetail):Observable<OrderDetail>{
+    debugger;
+    return this.dataSource.SaveOrdetails(orderdetail);
+    }
  
 }

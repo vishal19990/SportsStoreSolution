@@ -6,7 +6,7 @@ import {ProductRepository} from '../models/product.repository';
 
 @Component(
   {
-    templateUrl:'./producteditor.component.html'
+    templateUrl: './producteditor.component.html'
   }
 )
 
@@ -19,7 +19,7 @@ export class ProductEditorComponent {
     if(this.editing){
 
       Object.assign(this.product,productRepository.getProduct(activeRoute.snapshot.params['id']));
-      console.log(`product : ${JSON.stringify(this.product)}`)
+      console.log(`product : ${JSON.stringify(this.product)}`);
       console.log(`product : ${JSON.stringify(activeRoute.snapshot.params['id'])}`)
 
 
@@ -29,6 +29,6 @@ export class ProductEditorComponent {
   save(form:NgForm)
   {
     this.productRepository.saveProduct(this.product);
-    this.router.navigateByUrl('/admin/main/products')
+    this.router.navigateByUrl('/admin/main/products');
   }
 }

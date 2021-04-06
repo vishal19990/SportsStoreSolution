@@ -1,94 +1,81 @@
 <div class="navbar fixed-top navbar-dark bg-orderTableNavbar text-white">
   <a class="navbar-brand" routerLink="/">SPORT STORE (admin-order)</a>
-</div>
-
-<div class="form-check">
+  </div>
+  
+  <div class="form-check">
   <label class="form-check-label">
-    <input type="checkbox" class="form-check-input" [(ngModel)]="includeShipped" />
-    Display Shipped Orders
+  <input
+  type="checkbox"
+  class="form-check-input"
+  [(ngModel)]="includeShipped"
+  />
+  Display Shipped Orders
   </label>
-</div>
-
-<!-- <table class="table table-sm">
+  </div>
+  
+  <table class="table table-sm">
   <thead>
-    <tr>
-      <th>CustomerName</th>
-      <th>Zip</th>
-      <th>Product</th>
-      <th>Quantity</th>
-      <th>Price</th>
-    </tr>
+  <tr>
+  <th>CustomerName</th>
+  <th>Zip</th>
+  <th></th>
+  <th></th>
+  <th></th>
+  </tr>
   </thead>
   <tbody>
-    <tr *ngIf="getOrders().length == 0">
-      <td colspan="5">There are no Orders</td>
-    </tr>
-
-    <ng-template ngFor let-o [ngForOf]="getOrders()">
-      <tr>
-        <td>{{ o.name }}</td>
-        <td>{{ o.zip }}</td>
-        <ng-template ngFor let-od [ngForOf]="getOrderDetailsById(o.orderId)">
-        <th>
-          <label>{{od.productName}}</label>
-        </th>
-        <th>
-          <label>{{od.count}}</label>
-        </th>
-        <th>
-          <label>{{od.price}}</label>
-        </th><br/>
-        </ng-template>
-        </tr>
-
-          <!-- <button class="btn btn-outline-warning" (click)="markedShipped(o)">
-            Ship
-          </button>
-          <button class="btn btn-outline-danger ms-1" (click)="delete(o.orderId)">
-            Delete
-          </button> -->
-
-      <!-- <tr *ngFor="let data of o.cart.lines">
-        <td colspan="2"></td>
-        <td>{{ data.product.productName }}</td>
-        <td>{{ data.quantity }}</td>
-        <td class="text-right">
-          {{ data.product.price | currency: "INR":"symbol":"2.2-2" }}
-        </td>
-      </tr>
-      <tr>
-        <td colspan="5" class="text-right">
-          Grand Total: {{ o.cart.cartPrice | currency: "INR":"symbol":"2.2-2" }}
-        </td>
-      </tr> 
-    </ng-template>
-  </tbody>
-</table> -->
-
-
-<table>
-  <thead>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th>Product</th>
-    <th>Quantity</th>
-    <th>Price</th>
-  </thead>
-
-  <tbody>
-    <td>CustomerName :</td>
-    <td>Zip :</td>
-    <ng-template ngFor let-o [ngForOf]="getOrders()">
-    <td>{{o.name}}</td>
-    <td>{{o.zip}}</td>
-   
-    <ng-template ngFor let-os [ngForOf]="getOrderDetailsById(o.orderId)">
-    <td>{{os.productName}}</td>
-    <td>{{os.count}}</td>
-    <td>{{os.price}}</td>
-    </ng-template>
+  <tr *ngIf="getOrders().length == 0">
+  <td colspan="5">There are no Orders</td>
+  </tr>
+  
+  <ng-template ngFor let-o [ngForOf]="getOrders()">
+  <tr>
+  <td>{{ o.name }}</td>
+  <td>{{ o.zip }}</td>
+  <td>Product</td>
+  <td>Quantity</td>
+  <td>Price</td>
+  <button class="btn btn-outline-warning" (click)="markedShipped(o)">
+    Ship
+    </button>
+    <button class="btn btn-outline-danger ms-1" (click)="delete(o.orderId)">
+    Delete
+    </button>
+  </tr>
+  <ng-template ngFor let-od [ngForOf]="getOrderDetailsById(o.orderId)">
+  <tr>
+  <td></td>
+  <td></td>
+  
+  <td>
+  <label>{{ od.productName }}</label>
+  </td>
+  <td>
+  <label>{{ od.count }}</label>
+  </td>
+  <td>
+  <label>{{ od.price }}</label>
+  </td>
+  </tr>
+  </ng-template>
+  
+  
+  
+  <!-- <tr *ngFor="let data of o.cart.lines">
+  <td colspan="2"></td>
+  <td>{{ data.product.productName }}</td>
+  <td>{{ data.quantity }}</td>
+  <td class="text-right">
+  {{ data.product.price | currency: "INR":"symbol":"2.2-2" }}
+  </td>
+  </tr>
+  <tr>
+  <td colspan="5" class="text-right">
+  Grand Total: {{ o.cart.cartPrice | currency: "INR":"symbol":"2.2-2" }}
+  </td>
+  </tr> -->
   </ng-template>
   </tbody>
-</table>
+  </table>
+  
+  

@@ -57,5 +57,12 @@ saveOrder(order: Order): Observable<Order> {
   }
   //getOrders():Observable<Order[]>{ 
   //  return this.http.get<Order[]>(`${this.baseUrl}/order`);}
-
+  SaveOrdetails(orderdetail:OrderDetail):Observable<OrderDetail>{
+    console.log(
+    `Displying orderdetails data:\n${JSON.stringify(orderdetail)}`
+    
+    );
+    return this.http.post<OrderDetail>(
+    `${this.baseUrl}/orderdetail`,orderdetail);
+    }
 }
